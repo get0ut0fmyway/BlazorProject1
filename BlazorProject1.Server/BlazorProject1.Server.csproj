@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BlazorProject1.Shared\BethanysPieShopHRM.Shared.csproj" />
+  </ItemGroup>
+
 </Project>
