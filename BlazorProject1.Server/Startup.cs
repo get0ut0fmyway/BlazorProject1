@@ -22,11 +22,18 @@ namespace BlazorProject1.Server
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+
             services.AddHttpClient<IEmployeeDataService, EmployeeDataService>(
                 client =>
                 {
                     client.BaseAddress = new Uri("https://localhost:44340/");
                 });
+            services.AddHttpClient<ICountryDataService, CountryDataService>(
+                client =>
+                {
+                    client.BaseAddress = new Uri("https://localhost:44340/");
+                });
+
             services.AddServerSideBlazor().AddCircuitOptions(options => { options.DetailedErrors = true; });
         }
 
