@@ -34,6 +34,12 @@ namespace BlazorProject1.Server
                     client.BaseAddress = new Uri("https://localhost:44340/");
                 });
 
+            services.AddHttpClient<IJobCategoryDataService, JobCategoryDataService>(
+                client =>
+                {
+                    client.BaseAddress = new Uri("https://localhost:44340/");
+                });
+
             services.AddServerSideBlazor().AddCircuitOptions(options => { options.DetailedErrors = true; });
         }
 
