@@ -19,6 +19,9 @@ namespace BlazorProject1.Server.Pages
         [Inject]
         public IJobCategoryDataService JobCategoryDataService { get; set; }
 
+        [Inject]
+        public NavigationManager NavigationManager { get; set; }
+
         [Parameter]
         public string EmployeeId { get; set; }
 
@@ -86,6 +89,21 @@ namespace BlazorProject1.Server.Pages
                 _saved = true;
 
             }
+        }
+
+        protected async Task DeleteEmployee()
+        {
+            await EmployeeDataService.DeleteEmployee(Employee.EmployeeId);
+
+            _statusClass = "alert-success";
+            _message = "Deleted successfully";
+
+            _saved = true;
+        }
+
+        protected void NavigateToOverview()
+        {
+            NavigationManager.NavigateTo("/employeeoverview");
         }
     }
 }
