@@ -15,6 +15,9 @@ namespace BlazorProject1.Server.Components
         [Inject]
         public IEmployeeDataService EmployeeDataService { get; set; }
 
+        [Parameter]
+        public EventCallback<bool> CloseEventCallback { get; set; }
+
         public bool ShowDialog { get; set; }
 
         public void Show()
@@ -38,6 +41,9 @@ namespace BlazorProject1.Server.Components
         protected async Task HandleValidSubmit()
         {
             await EmployeeDataService.AddEmployee(Employee);
+
+            await CloseEventCallback.InvokeAsync(true);
+
             ShowDialog = false;
 
             StateHasChanged();

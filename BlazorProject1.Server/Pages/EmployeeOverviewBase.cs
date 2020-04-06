@@ -29,5 +29,11 @@ namespace BlazorProject1.Server.Pages
 			Employees = (await EmployeeDataService.GetAllEmployees()).ToList();
 		}
 
+		public async void AddEmployeeDialog_OnDialogClose()
+		{
+			Employees = (await EmployeeDataService.GetAllEmployees()).ToList();
+			StateHasChanged();
+		}
+
 	}
 }
