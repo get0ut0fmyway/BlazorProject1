@@ -1,4 +1,5 @@
-﻿using BethanysPieShopHRM.Shared;
+﻿using BethanysPieShopHRM.ComponentsLibrary.Map;
+using BethanysPieShopHRM.Shared;
 using BlazorProject1.Server.Services;
 using Microsoft.AspNetCore.Components;
 using System;
@@ -18,10 +19,16 @@ namespace BlazorProject1.Server.Pages
 
 		public Employee Employee { get; set; } = new Employee();
 
+		public List<Marker> MapMarkers { get; set; } = new List<Marker>();
+
 		protected override async Task OnInitializedAsync()
 		{
-
 			Employee = await EmployeeDataService.GetEmployeeDetails(int.Parse(EmployeeId));
+
+			MapMarkers = new List<Marker>
+			{
+				new Marker { Description = $"{Employee.FirstName} {Employee.LastName}", ShowPopup = false, X = Employee.Longitude, Y = Employee.Latitude }
+			};
 		}
 
 	}
